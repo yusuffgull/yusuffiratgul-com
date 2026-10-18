@@ -7,6 +7,7 @@ Static site for Yusuf Fırat Gül's apps: privacy policy + support pages (linked
 |---|---|
 | `/` | Home, app list, contact |
 | `/sort-cafe/` `/merge-mine/` `/bloom-blocks/` | Privacy Policy (`#privacy`) + Support (`#support`) |
+| `/neydi-neydi/` | Gizlilik (`#gizlilik`) + Destek (`#destek`), English section `#privacy` |
 | `/sekine/` | Gizlilik (`#gizlilik`) + Destek (`#destek`), English section `#privacy` |
 | `/app-ads.txt` | `google.com, pub-9225214452759054, DIRECT, f08c47fec0942fa0` |
 
