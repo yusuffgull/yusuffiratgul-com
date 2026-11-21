@@ -1,0 +1,6 @@
+Fraunces and Figtree are licensed under the SIL Open Font License, Version 1.1.
+
+Fraunces: https://github.com/undercasetype/Fraunces
+Figtree:  https://github.com/erikdkennedy/figtree
+
+The SIL Open Font License 1.1 is available at https://openfontlicense.org
