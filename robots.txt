@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://yusuffiratgul.com/sitemap.xml
