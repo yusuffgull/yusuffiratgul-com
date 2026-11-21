@@ -1,27 +1,36 @@
 # Handoff
 
 ## CURRENT TASK
-Portfolio redesign on branch feat/portfolio-redesign: CV/portfolio home (EN `/`, TR `/tr/`), policy
-pages restyled via style.css only (HTML untouched, ASC URLs/anchors intact), sitemap, hreflang,
-README. Merged to main (--no-ff, 50bbca8) and pushed with user approval 2026-11-21; live via
-GitHub Pages.
+Portfolio redesign is live (main 50bbca8, pushed 2026-11-21). Started an Awwwards-style review
+with the `jury` plugin (juliobsz/skills, installed at user scope). The SEO/metadata audit finished
+(12 FAIL / 47 WARN); the screenshot + blind-critic scoring was not finished (context cleared to
+save usage). Re-run later: `/jury https://yusuffiratgul.com` in a fresh session.
 
 ## DONE
-- Reference gallery research (scrolltide, supahero, navbar/footer/cta galleries, refero styles, 3dicons)
-- Design spec (docs/design.md); ID-card hero with valid ICAO TD1 MRZ (check digits)
-- EN home, TR home, style.css, site.js; self-hosted Fraunces/Figtree (OFL), 3dicons lock/puzzle (CC0)
-- App Store links verified via iTunes lookup (5 apps; Billune not on App Store)
-- Sitemap, hreflang, robots Sitemap line, README
-- VISION review: reduced-motion change listener, menu-ready nav gating, AA hover contrast,
-  AdMob data claims, aria-disabled verify button, no-flash start state, footer heading levels
-- Browser check: desktop + 375px, light + dark, EN + TR, verify interaction, mobile menu
+- CV/portfolio home (EN `/`, TR `/tr/`), restyled policy pages via style.css, sitemap, hreflang
+- Merged to main and pushed; GitHub Pages build verified, live pages return 200
+- jury + awwwards plugins installed; jury audit run on the live site
 
-## NEXT
-1. User decides Billune wording (currently counted in "six apps shipped" but not on App Store)
-2. Optional: OG share image
+## NEXT (Codex-ready, low/medium risk)
+Hard rule: never change policy page URLs, the `#privacy/#support/#gizlilik/#destek` anchors,
+policy text, `CNAME` or `app-ads.txt`. Edits in both `index.html` and `tr/index.html` must mirror.
+1. Six policy pages (`sekine/ billune/ neydi-neydi/ sort-cafe/ merge-mine/ bloom-blocks/`):
+   add a `<meta name="description">` (50-160 chars) and wrap the existing content in `<main>`
+   (audit FAIL). Also add canonical, og:title, og:description.
+2. All pages: add a favicon link (an SVG `yfg.` mark in the site's ink/accent colours).
+3. `/` and `/tr/`: add `twitter:card` and an `og:image` (1200x630, warm paper style, store under
+   `assets/og/`).
+4. `/tr/`: shorten the meta description to <=160 chars.
+5. Replace em/en dashes in visible text on `/` (13) and `/tr/` (9) with commas, colons or
+   rewrites; the audit flags them as an AI-writing tell.
+6. Verify: `python3 -m http.server`, open every page, no console errors; then re-run the audit:
+   `cd ~/.cache/jury && node ~/.claude/plugins/cache/juliobsz/jury/*/scripts/audit.mjs https://yusuffiratgul.com`
+   (after deploy) — FAIL count should be 0.
+7. Billune: still counted as "shipped" but has no App Store listing. Needs the user's decision
+   ("Coming soon" label vs. link once published). Do not guess.
 
 ## BLOCKERS
-Yok
+Item 7 needs a user decision. Push to the public repo needs explicit user OK.
 
 ## BEST AGENT NOW
-Claude — remaining items are user decisions plus a merge.
+Codex CLI for items 1-6 (mechanical HTML/meta work); Claude for the jury re-score and item 7.
