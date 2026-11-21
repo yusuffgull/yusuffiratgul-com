@@ -3,8 +3,8 @@
 ## CURRENT TASK
 Portfolio redesign on branch feat/portfolio-redesign: CV/portfolio home (EN `/`, TR `/tr/`), policy
 pages restyled via style.css only (HTML untouched, ASC URLs/anchors intact), sitemap, hreflang,
-README. Committed on the feature branch; awaiting user approval to merge to main and push
-(public repo → explicit OK required).
+README. Merged to main (--no-ff, 50bbca8) and pushed with user approval 2026-11-21; live via
+GitHub Pages.
 
 ## DONE
 - Reference gallery research (scrolltide, supahero, navbar/footer/cta galleries, refero styles, 3dicons)
@@ -18,9 +18,7 @@ README. Committed on the feature branch; awaiting user approval to merge to main
 
 ## NEXT
 1. User decides Billune wording (currently counted in "six apps shipped" but not on App Store)
-2. User approval → `git merge --no-ff feat/portfolio-redesign` into main
-3. Push after explicit OK
-4. Optional: OG share image
+2. Optional: OG share image
 
 ## BLOCKERS
 Yok
