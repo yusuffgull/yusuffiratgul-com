@@ -197,8 +197,6 @@ body.home .is-unverified .result.show { visibility: visible; }
 body.home .exp { display: grid; gap: 40px; margin-top: 40px; }
 body.home .exp-row { display: flex; flex-wrap: wrap; gap: 4px 20px; font: 500 .85rem/1.5 var(--mono); color: var(--graphite); margin-bottom: 28px; }
 body.home .exp-row b { color: var(--ink); font-weight: 700; }
-body.home .metric { font: 500 clamp(3.25rem, 9vw, 6.5rem)/.95 var(--serif); letter-spacing: -.04em; font-variant-numeric: tabular-nums; margin: 0 0 14px; }
-body.home .metric-cap { color: var(--graphite); font-size: 1rem; max-width: 32ch; }
 body.home .highlights { counter-reset: hl; border-top: 1px solid var(--line); }
 body.home .highlights li { counter-increment: hl; display: grid; grid-template-columns: 2.6rem 1fr; padding: 18px 0; border-bottom: 1px solid var(--line); }
 body.home .highlights li::before { content: counter(hl, decimal-leading-zero); font: 500 .8rem/1.9 var(--mono); color: var(--graphite); }
