@@ -7,9 +7,9 @@
   var isTr = (root.lang || 'en').toLowerCase().indexOf('tr') === 0;
   var S = isTr
     ? { copied: 'Kopyalandı ✓', verify: 'Doğrula ▸', again: 'Tekrar doğrula ↺', locale: 'tr-TR',
-        done: 'Doğrulama başarılı. Başarı oranı %30’dan %90’a yükseldi.' }
+        done: 'Doğrulama başarılı.' }
     : { copied: 'Copied ✓', verify: 'Verify ▸', again: 'Verify again ↺', locale: 'en-GB',
-        done: 'Verification passed. Success rate raised from 30% to 90%.' };
+        done: 'Verification passed.' };
 
   var reduceMq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   var motion = !(reduceMq && reduceMq.matches);
@@ -113,14 +113,12 @@
     var btn = $('.verify-btn', stage);
     var checks = $$('.checks li', stage);
     var result = $('.result', stage);
-    var num = $('.rate-num', stage);
     var status = $('[data-verify-status]', stage);
     root.classList.add('is-ready'); // releases the CSS no-flash start state
     if (!motion) return; // static final state; button stays hidden
 
     var busy = false;
     var timers = [];
-    var gen = 0; // bumped to cancel an in-flight count animation
     function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
 
     function reset() {
@@ -128,22 +126,9 @@
       stage.classList.remove('is-scanning');
       checks.forEach(function (c) { c.classList.remove('on'); });
       if (result) result.classList.remove('show');
-      if (num) num.textContent = '30';
       if (status) status.textContent = '';
     }
 
-    function count(from, to, ms, done) {
-      var start = null, mine = gen;
-      function step(t) {
-        if (mine !== gen) return;
-        if (start === null) start = t;
-        var p = Math.min((t - start) / ms, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        if (num) num.textContent = String(Math.round(from + (to - from) * eased));
-        if (p < 1) window.requestAnimationFrame(step); else done();
-      }
-      window.requestAnimationFrame(step);
-    }
 
     function run() {
       if (busy) return;
@@ -159,11 +144,9 @@
         checks.forEach(function (c, i) { later(function () { c.classList.add('on'); }, i * 120); });
         later(function () {
           if (result) result.classList.add('show');
-          count(30, 90, 800, function () {
-            if (status) status.textContent = S.done;
-            if (btn) { btn.textContent = S.again; btn.removeAttribute('aria-disabled'); }
-            busy = false;
-          });
+          if (status) status.textContent = S.done;
+          if (btn) { btn.textContent = S.again; btn.removeAttribute('aria-disabled'); }
+          busy = false;
         }, checks.length * 120 + 80);
       }, 900);
     }
@@ -180,12 +163,11 @@
 
     // Reduced motion switched on mid-session: stop everything, show the final verified state.
     motionOff.push(function () {
-      gen++; busy = false;
+      busy = false;
       timers.forEach(clearTimeout); timers = [];
       untilt();
       stage.classList.remove('is-unverified', 'is-scanning');
       if (result) result.classList.remove('show');
-      if (num) num.textContent = '90';
       if (status) status.textContent = '';
       if (btn) { btn.hidden = true; btn.removeAttribute('aria-disabled'); }
     });
