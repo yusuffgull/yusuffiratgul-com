@@ -1,36 +1,32 @@
 # Handoff
 
 ## CURRENT TASK
-Portfolio redesign is live (main 50bbca8, pushed 2026-11-21). Started an Awwwards-style review
-with the `jury` plugin (juliobsz/skills, installed at user scope). The SEO/metadata audit finished
-(12 FAIL / 47 WARN); the screenshot + blind-critic scoring was not finished (context cleared to
-save usage). Re-run later: `/jury https://yusuffiratgul.com` in a fresh session.
+SEO/metadata NEXT items 1-5 are implemented on `fix/seo-meta`: six policy pages now have descriptions,
+canonicals, Open Graph metadata and `<main>` landmarks; every page has the new SVG favicon; both home
+pages use a 1200x630 OG image, Twitter cards and dash-free copy; the Turkish description is under 160
+characters. Static parsing and internal target/anchor checks pass. The sandbox blocks both `.git` writes
+and localhost socket binding, so changes remain uncommitted and the required HTTP/curl check could not run.
 
 ## DONE
 - CV/portfolio home (EN `/`, TR `/tr/`), restyled policy pages via style.css, sitemap, hreflang
-- Merged to main and pushed; GitHub Pages build verified, live pages return 200
-- jury + awwwards plugins installed; jury audit run on the live site
+- Merged redesign to main and pushed; GitHub Pages build verified, live pages return 200
+- jury + awwwards plugins installed; initial jury audit run on the live site
+- Added descriptions, canonicals, og:title, og:description and `<main>` to all six policy pages
+- Added an SVG `yfg.` favicon to all nine HTML pages
+- Added a 1200x630 warm-paper OG image and Twitter large-card metadata to `/` and `/tr/`
+- Shortened the Turkish meta description to 137 characters
+- Rewrote visible em/en dashes on `/` and `/tr/`; both files now contain zero
+- Parsed all nine pages and resolved 20 unique internal files/anchors; `app-ads.txt` and `CNAME` diffs are empty
 
-## NEXT (Codex-ready, low/medium risk)
-Hard rule: never change policy page URLs, the `#privacy/#support/#gizlilik/#destek` anchors,
-policy text, `CNAME` or `app-ads.txt`. Edits in both `index.html` and `tr/index.html` must mirror.
-1. Six policy pages (`sekine/ billune/ neydi-neydi/ sort-cafe/ merge-mine/ bloom-blocks/`):
-   add a `<meta name="description">` (50-160 chars) and wrap the existing content in `<main>`
-   (audit FAIL). Also add canonical, og:title, og:description.
-2. All pages: add a favicon link (an SVG `yfg.` mark in the site's ink/accent colours).
-3. `/` and `/tr/`: add `twitter:card` and an `og:image` (1200x630, warm paper style, store under
-   `assets/og/`).
-4. `/tr/`: shorten the meta description to <=160 chars.
-5. Replace em/en dashes in visible text on `/` (13) and `/tr/` (9) with commas, colons or
-   rewrites; the audit flags them as an AI-writing tell.
-6. Verify: `python3 -m http.server`, open every page, no console errors; then re-run the audit:
-   `cd ~/.cache/jury && node ~/.claude/plugins/cache/juliobsz/jury/*/scripts/audit.mjs https://yusuffiratgul.com`
-   (after deploy) — FAIL count should be 0.
-7. Billune: still counted as "shipped" but has no App Store listing. Needs the user's decision
-   ("Coming soon" label vs. link once published). Do not guess.
+## NEXT
+1. Outside the restricted sandbox, run `python3 -m http.server`, curl all nine pages and confirm no browser console errors.
+2. Commit the current changes in small logical commits; `.git/index.lock` creation is blocked in this sandbox.
+3. After deploy, rerun the jury audit; the live URL cannot reflect this unpushed branch yet.
+4. Billune is still counted as shipped but has no App Store listing. Get the user decision: “Coming soon” label or link once published.
 
 ## BLOCKERS
-Item 7 needs a user decision. Push to the public repo needs explicit user OK.
+The sandbox blocks localhost socket binding and `.git` writes. Jury re-audit requires a deploy; push is explicitly out of scope.
+Billune labeling still needs a user decision.
 
 ## BEST AGENT NOW
-Codex CLI for items 1-6 (mechanical HTML/meta work); Claude for the jury re-score and item 7.
+Codex CLI outside this restricted sandbox for the HTTP/curl verification and commits; Claude for the jury re-score and Billune decision.
