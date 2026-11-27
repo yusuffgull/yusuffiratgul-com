@@ -19,14 +19,18 @@ and localhost socket binding, so changes remain uncommitted and the required HTT
 - Parsed all nine pages and resolved 20 unique internal files/anchors; `app-ads.txt` and `CNAME` diffs are empty
 
 ## NEXT
-1. Outside the restricted sandbox, run `python3 -m http.server`, curl all nine pages and confirm no browser console errors.
-2. Commit the current changes in small logical commits; `.git/index.lock` creation is blocked in this sandbox.
-3. After deploy, rerun the jury audit; the live URL cannot reflect this unpushed branch yet.
-4. Billune is still counted as shipped but has no App Store listing. Get the user decision: “Coming soon” label or link once published.
+1. Billune is counted in "six apps shipped" but has no App Store listing: user decides "Coming soon" label or link once published.
+2. Optional (needs real data): one problem/idea/outcome line per app card (downloads, ratings).
+3. Repo stays PUBLIC: GitHub free plan cannot serve Pages from a private repo (App Store policy URLs depend on it).
+
+## JURY (2026-11-27)
+- Round 1 (live, before fixes): critic 6.7, jury estimate ~7.8.
+- Round 2 (local, after SEO + jury fixes): critic 7.0, jury estimate ~8.1. Mobile LCP ~1 s, CLS 0, axe 0, audit 0 FAIL.
+- Round 2 polish pushed (0cb3ad4): locale-correct card labels, skip links on app pages, card morph view transition.
+- Known tool artefacts: email CTA "no hover" (capture is blank), 404 "Error response" (local python server; Pages serves 404.html).
 
 ## BLOCKERS
-The sandbox blocks localhost socket binding and `.git` writes. Jury re-audit requires a deploy; push is explicitly out of scope.
-Billune labeling still needs a user decision.
+Yok
 
 ## BEST AGENT NOW
-Codex CLI outside this restricted sandbox for the HTTP/curl verification and commits; Claude for the jury re-score and Billune decision.
+Claude: remaining items are user decisions.
