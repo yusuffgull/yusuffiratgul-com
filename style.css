@@ -74,7 +74,7 @@ a:hover { color: var(--link); text-decoration-thickness: 2px; text-decoration-co
 /* ---------- policy pages ---------- */
 .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
 .top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 40px; font: 500 .8rem/1.4 var(--mono); letter-spacing: .02em; }
-.top a { color: var(--graphite); text-decoration: none; }
+.top a { display: inline-block; padding: 6px 0 4px; color: var(--graphite); text-decoration: none; }
 .top a:hover { color: var(--ink); }
 /* "Verified" underline: draws in under the pointer. */
 .top a, body.home .nav a, body.home .lang a:not([aria-current]), body.home .foot-cols a, body.home .textlink {
@@ -122,8 +122,8 @@ body.home p { max-width: 64ch; }
 body.home .shell { max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 32px); }
 body.home section[id] { scroll-margin-top: 88px; }
 body.home .mono { font-family: var(--mono); }
-body.home .skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 999px; font-weight: 600; text-decoration: none; }
-body.home .skip:focus { top: 12px; color: var(--paper); }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+.skip:focus { top: 12px; color: var(--paper); }
 
 /* header */
 body.home .site-header { position: sticky; top: 0; z-index: 50; background: var(--paper); border-bottom: 1px solid transparent; }
@@ -259,6 +259,7 @@ body.home .app-links { display: flex; flex-wrap: wrap; gap: 8px 24px; padding-to
 }
 body.home .app-card::after { content: ""; position: absolute; inset: 0; background: var(--paper); opacity: 0; pointer-events: none; }
 
+body.home .app:focus-within { z-index: 10; }
 body.home .app:focus-within .app-card { transform: none; }
 body.home .app:focus-within .app-card::after { opacity: 0; }
 
@@ -266,7 +267,6 @@ body.home .app:focus-within .app-card::after { opacity: 0; }
 body.home .stack-grid { display: grid; gap: 20px; margin-top: 40px; }
 body.home .stack-group { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; }
 body.home .stack-group h3 { display: flex; align-items: center; gap: 12px; min-height: 44px; margin-bottom: 16px; font: 500 .8rem/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
-body.home .stack-group h3 img { width: 44px; height: 44px; margin-left: auto; }
 body.home .chips { margin: 0; gap: 8px; }
 body.home .chips li { font-size: .88rem; font-weight: 500; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); }
 @media (min-width: 720px) { body.home .stack-grid { grid-template-columns: 1fr 1fr; } }
@@ -307,7 +307,7 @@ body.home .big-word { font-variant-ligatures: no-common-ligatures; text-align: l
   body.home .wordmark::after { transition: opacity .2s ease, transform .3s cubic-bezier(.3,1.6,.5,1); }
   @view-transition { navigation: auto; }
   body.home .wordmark { view-transition-name: brand; }
-  body.home .idcard { view-transition-name: idcard; }
+  body.home .idcard, .app-id { view-transition-name: idcard; }
   body.home .hero h1 { view-transition-name: hero-title; }
   ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; }
 }
